@@ -8,6 +8,7 @@ This document explains the architectural decisions behind dividing the Platform 
 3. `Central Observability Pipeline (ELK & Firehose)`
 4. `Data Residency Controls & Cross-Cutting Infrastructure`
 5. `Back-office Operations BFF`
+6. `Centralized Notification Engine (SES/SNS)`
 
 ---
 
@@ -18,7 +19,7 @@ The API Gateway is a native AWS service, Auth-Service utilizes Cognito or lightw
 
 ---
 
-## 2. Why exactly these 3 boundaries? (The Challenge)
+## 2. Why exactly these 6 boundaries? (The Challenge)
 
 Let's challenge if we have too many or too few services by evaluating their Domain-Driven Design (DDD) boundaries and failure domains.
 
@@ -41,6 +42,10 @@ Let's challenge if we have too many or too few services by evaluating their Doma
 ### 5. Back-office Operations BFF
 * **Why it exists:** To aggregate sensitive administrative data (Compliance flags, AML hits, Audit logs) for internal employee use while enforcing strict **RBAC (C11)**.
 * **Challenge:** *Why not let the individual team BFFs handle their own admin views?* **Security Consolidation.** Internal bank employee tools often need data from *every* team (e.g., seeing a customer's Onboarding status AND their Deposit history). By centralizing this into a single Platform-managed BFF, we can ensure that PII redaction and audit logging are applied consistently across all internal dashboards, regardless of which team's data is being viewed.
+
+### 6. Centralized Notification Engine
+* **Why it exists:** To act as the single outbound funnel for all customer SMS and Email communication (M33).
+* **Challenge:** *Why not let Onboarding send KYC approval emails, and Deposits send maturity emails?* **Brand Consistency & Spam Prevention.** If every microservice integrates with Twilio independently, the bank loses central control over localized email templates and rate limits (e.g., spamming a user 3 times in one minute). By centralizing notifications, domains simply fire an EventBridge event (`AccountMatured`), and the Notification Engine handles formatting the payload into a beautifully branded HTML email while tracking strict delivery telemetry.
 
 ---
 

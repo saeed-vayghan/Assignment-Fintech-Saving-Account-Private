@@ -23,8 +23,7 @@ Jobs that run on a strict programmatic schedule (e.g., daily at midnight).
 
 | Job Name | Owning Team | Target Microservice | Trigger | Purpose / Detail |
 | :--- | :--- | :--- | :--- | :--- |
-| **Interest Engine** | 💰 Payments | `Interest Engine` | `Cron-EB` | Runs daily/monthly to calculate accruals for overnight accounts and compute fixed-term yields. |
-| **Account Maturity State** | 🏦 Deposits | `Maturity Cron Job` | `Cron-EB` | Runs nightly to scan the Core Ledger for fixed-term deposits hitting their end-date, transitioning them to `MATURED`. |
+| **Transaction Processing (Yield & Maturity)** | 🏦 Deposits | `Transaction Processing Service` | `Cron-EB` | Runs nightly to calculate accruals for accounts, and transitions expired fixed-term deposits to `MATURED`. |
 
 ---
 
@@ -37,8 +36,8 @@ System-wide business events that trigger reactive logic across different bounded
 | `CustomerVerified` | 🛂 Onboarding | 🏦 Deposits (`Core Ledger`) | `Event-PubSub` | Initializes a brand-new, empty savings account ledger for the newly approved customer. |
 | `TransactionCommitted` | 🏦 Deposits | 🛂 Onboarding (`Compliance API`) | `Event-PubSub` | Real-time asynchronous AML screening. Flags suspicious transactions for manual compliance officer review without blocking live DB operations. |
 | `AccountMatured` | 🏦 Deposits | 💰 Payments (`Tax Engine` / `Payout`) | `Event-PubSub` | Triggers the calculation of final withholding taxes and initiates the payout orbital workflow. |
-| `AccountMatured` | 🏦 Deposits | 🏦 Deposits (`Notification`) | `Event-PubSub` | Sends an email/SMS congratulating the user on maturity and detailing rollover options. |
-| `DepositCreated` | 🏦 Deposits | 🏦 Deposits (`Notification`) | `Event-PubSub` | Asynchronously triggers a transactional receipt email. |
+| `AccountMatured` | 🏦 Deposits | ⚙️ Platform (`Notification Engine`) | `Event-PubSub` | Sends an email/SMS congratulating the user on maturity and detailing rollover options. |
+| `DepositCreated` | 🏦 Deposits | ⚙️ Platform (`Notification Engine`) | `Event-PubSub` | Asynchronously triggers a transactional receipt email. |
 
 ---
 
@@ -48,7 +47,7 @@ Used to decouple aggressive producers from fragile consumers, absorbing traffic 
 
 | Queue Name | Owning Team | Producer | Consumer | Mechanism | Purpose / Detail |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Bulk Transaction Buffer** | 🏦 Deposits | 💰 Payments (`Interest Engine`) | `Transaction Processing Service` | `Queue-FIFO` | Absorbs end-of-month interest-payout spikes, throttling the write concurrency. |
+| **Maturity/Tax Orchestration Buffer** | 💰 Payments | 🏦 Deposits (`Transaction Processing Service`) | `Tax Engine / Payout` | `Queue-FIFO` | Absorbs end-of-month maturity spikes (e.g. Dec 31st), throttling the tax calculation concurrency. |
 | **Payout Orchestration** | 💰 Payments | `Payout Orchestrator` | Central Bank APIs | `Queue-Std` | Batches outgoing money transfers, managing retries. |
 | **Webhook Buffer** | 🛂 Onboarding | External IDV Vendors | `KYC Webhook Service` | `Queue-FIFO` | Guarantees ordered, zero-loss ingestion of verification webhooks from external IDV vendors. |
 
@@ -79,7 +78,7 @@ graph TD
     %% Consumers
     AMLService[🛂 Compliance API \ AML Screening]
     PayTaxEngine[💰 Payments \ Tax & Payout]
-    DepNotify[🏦 Deposits \ Notification Service]
+    PlatformNotify[⚙️ Platform \ Notification Engine]
     DepLedger[🏦 Deposits \ Ledger Init]
 
     %% Emitting Events
@@ -92,8 +91,8 @@ graph TD
     EventBus -- CustomerVerified --> DepLedger
     EventBus -- TransactionCommitted --> AMLService
     EventBus -- AccountMatured --> PayTaxEngine
-    EventBus -- AccountMatured --> DepNotify
-    EventBus -- DepositCreated --> DepNotify
+    EventBus -- AccountMatured --> PlatformNotify
+    EventBus -- DepositCreated --> PlatformNotify
 
     %% Styling
     style EventBus fill:#ff9900,stroke:#333,color:#fff
@@ -108,8 +107,8 @@ graph LR
     IDVQueue --> KYCService[🛂 Onboarding \ KYC Service]
 
     %% Payout Bulk Flow
-    PaymentsInt[💰 Payments \ Interest Engine] -- IBR Entries --> BulkTransQueue[[SQS FIFO \ Bulk Buffer]]
-    BulkTransQueue --> TransProcess[🏦 Deposits \ Transaction Service]
+    PaymentsInt[🏦 Deposits \ Transaction Service] -- AccountMatured Events --> BulkTransQueue[[SQS FIFO \ Maturity Buffer]]
+    BulkTransQueue --> TransProcess[💰 Payments \ Tax & Payout Engines]
 
     %% CQRS CDC
     DB[(Aurora \ Event Store)] -- CDC Stream --> ProjService[🏦 Deposits \ Projection Service]

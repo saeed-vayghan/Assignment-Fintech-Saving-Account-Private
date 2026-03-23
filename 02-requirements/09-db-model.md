@@ -7,6 +7,14 @@ This document visualizes the exact database schemas for the four engineering tea
 ```mermaid
 erDiagram
     %% ONBOARDING (DynamoDB)
+    "ONBOARDING.Legal_Document_Versions (DynamoDB)" {
+        string PK_REGION_CODE PK
+        string SK_DOC_TYPE_VERSION PK
+        string s3_object_key
+        boolean is_active
+        timestamp published_at
+    }
+
     "ONBOARDING.Onboarding_Applications (DynamoDB)" {
         string PK_APPLICATION_UUID PK
         string GSI1_STATUS_SHARDED "Index"
@@ -100,6 +108,14 @@ erDiagram
     }
 
     %% PAYMENTS (DynamoDB)
+    "PAYMENTS.Regulatory_Report_Tasks (DynamoDB)" {
+        string PK_REPORT_JOB_MONTH PK
+        string GSI1_FAILED_STATUS_SPARSE "Index"
+        string status
+        string s3_archive_key
+        string transmission_receipt
+    }
+
     "PAYMENTS.Payout_Job_Locks (DynamoDB)" {
         string PK_PAYOUT_UUID PK
         string GSI1_FAILED_STATUS_SPARSE "Index"
@@ -135,6 +151,16 @@ erDiagram
     }
 
     %% PLATFORM (DynamoDB)
+    "PLATFORM.Notification_Log (DynamoDB)" {
+        string PK_CUSTOMER_UUID PK
+        string SK_TIMESTAMP_ID PK
+        string GSI1_FAILED_STATUS_SPARSE "Index"
+        string channel
+        string template_id
+        string status
+        string idempotency_key
+    }
+
     "PLATFORM.Auth_Users (DynamoDB)" {
         string PK_USER_UUID PK
         string GSI1_NATIONAL_HASH "Index"
@@ -174,6 +200,8 @@ erDiagram
     "DEPOSITS.Product_Catalog (Aurora PostgreSQL)" ||--o{ "DEPOSITS.Interest_Rates (Aurora PostgreSQL)" : tracks_yield_history
     "DEPOSITS.Ledger_Events (Aurora PostgreSQL)" ||--o| "PAYMENTS.Payout_Job_Locks (DynamoDB)" : triggers
     "DEPOSITS.Accounts (Aurora PostgreSQL)" ||--|{ "PAYMENTS.Tax_Withholding_Log (DynamoDB)" : incurs
+    "PLATFORM.Auth_Users (DynamoDB)" ||--o{ "PLATFORM.Notification_Log (DynamoDB)" : receives_notifications
+    "ONBOARDING.Onboarding_Applications (DynamoDB)" ||--o{ "ONBOARDING.Legal_Document_Versions (DynamoDB)" : references_versions
 ```
 
 ---
@@ -190,7 +218,7 @@ sequenceDiagram
     participant Auth as 🔐 Platform (Auth)
     participant Dynamo as ⚡ DynamoDB (Applications)
     participant IDV as 🕵️ Third-Party IDV
-    participant Engine as ⚙️ Underwriting Engine (SFN)
+    participant Engine as ⚙️ Underwriting Engine
     participant Audit as 📝 ELK (Compliance Line)
 
     User->>Auth: Log in with National eID

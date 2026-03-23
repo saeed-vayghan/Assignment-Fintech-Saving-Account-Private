@@ -76,3 +76,16 @@ Raw, immutable storage of all incoming callbacks from identity verification prov
     *   `officer_id` (String, if manually reviewed)
     *   `action_taken` (`FROZEN`, `CLEARED`, `REPORTED_TO_AUTHORITY`)
     *   `reasoning` (String/Text for compliance notes)
+
+## 4. Table: `Legal_Document_Versions` (DynamoDB)
+Maintains the metadata and active versions for all regional legal PDFs.
+
+*   **Partition Key (`PK`):** `REGION#<country_code>`
+*   **Sort Key (`SK`):** `DOC_TYPE#<type>#VERSION#<v_id>`
+*   **Attributes:**
+    *   `s3_object_key` (String)
+    *   `is_active` (Boolean)
+    *   `published_at` (ISO8601 Timestamp)
+
+## 5. Bucket: `Alborz_Legal_Assets` (Amazon S3)
+Stores the actual immutable PDF files for all Terms & Conditions, Privacy Policies, and Fee Schedules presented to users during Onboarding.

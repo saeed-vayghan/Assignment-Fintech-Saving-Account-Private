@@ -8,6 +8,7 @@ This document explains the architectural decisions behind dividing the Onboardin
 3. `Compliance & AML Service`
 4. `Bank Validation Service`
 5. `Underwriting & Decision Engine`
+6. `Legal Document API`
 
 ---
 
@@ -18,7 +19,7 @@ In a serverless context, these "microservices" are typically implemented as inde
 
 ---
 
-## 2. Why exactly these 5 boundaries? (The Challenge)
+## 2. Why exactly these 6 boundaries? (The Challenge)
 
 Let's challenge if we have too many or too few services by evaluating their Domain-Driven Design (DDD) boundaries and failure domains.
 
@@ -41,6 +42,10 @@ Let's challenge if we have too many or too few services by evaluating their Doma
 ### 5. Underwriting & Decision Engine (AWS Step Functions)
 * **Why it exists:** This engine performs the final evaluation of all compliance inputs (KYC, PEP, IDV) and outputs a mathematically verifiable `APPROVED` or `REJECTED` state.
 * **Challenge:** *Why not evaluate these rules directly inside the Registration API?* Decoupling the rules engine allows the Risk & Compliance team to update their underwriting criteria (e.g., changing PEP tolerance) independently, without a redeployment of the user-facing Registration API. Furthermore, modeling this as an **AWS Step Function** provides a flawless, visual, and immutable audit trace of exactly which decision branch a customer flowed down, which is a massive regulatory compliance benefit.
+
+### 6. Legal Document API
+* **Why it exists:** To act as the single source of truth for all customer-facing legal agreements (T&C, Privacy Policy, Fee Schedules) during the signup flow.
+* **Challenge:** *Why not just serve static PDFs from a public CDN?* **Auditability.** In banking, proving *exactly* which version of a Terms & Conditions document a user signed at a specific timestamp (e.g., `v1.2` vs `v1.3`) is a strict legal requirement. By placing an API in front of the S3 bucket, the API dynamically fetches the exact semantic version of the PDF required for that user's region, and guarantees the exact `S3 Version ID` is immutably embedded into their DynamoDB application record.
 
 ---
 

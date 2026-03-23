@@ -76,3 +76,17 @@ A strictly isolated, immutable index exclusively dedicated to compliance actions
     *   `action_type` (`KYC_SUBMITTED`, `PEP_SCREENING_MATCH`, `ACCOUNT_STATUS_CHANGED`)
     *   `old_value` / `new_value` (JSON - for state transitions)
     *   `reasoning` (String - officer notes for overrides)
+
+## 5. Table: `Notification_Log` (DynamoDB)
+Maintains an immutable record of every outbound SMS and Email sent to customers to guarantee communication compliance and prevent duplicate alerts.
+
+*   **Partition Key (`PK`):** `CUSTOMER#<customer_id>`
+*   **Sort Key (`SK`):** `NOTIFY#<timestamp>#<message_id>`
+*   **Attributes:**
+    *   `channel` (String - `SMS`, `EMAIL`)
+    *   `template_id` (String - Links to the localized template used)
+    *   `status` (String - `DELIVERED`, `BOUNCED`, `FAILED_DLQ`)
+    *   `idempotency_key` (String - The ID of the triggering Pub/Sub event)
+    *   `failed_status` (String, Nullable - Populated only if SES/SNS delivery fails)
+*   **GSI (Global Secondary Index):**
+    *   `GSI1-PK`: `FAILED_STATUS#<status>` -> **Sparse Index**. Only physicalizes failed delivery attempts, allowing Support queries without index throttling.

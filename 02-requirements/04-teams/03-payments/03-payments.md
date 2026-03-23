@@ -17,16 +17,16 @@ No. Customers never interact with Payment services directly.
 
 ### **Microservices**:
   1. `CAMT Ingestion pipeline`: An event-driven Lambda triggered automatically by S3 `ObjectCreated` events when partner banks cleanly drop XML files via AWS Transfer Family. Parses ISO 20022 rows and explicitly creates `PYI` entries (M8).
-  2. `Interest Engine`: Calculates daily accruals for overnight accounts and flat yields for fixed-term maturities (M9).
-  3. `Tax Engine`: Automatically computes mandatory withholding taxes (M10) before payouts occur.
-  4. `Payout Job Orchestrator`: Manages the state machine for processing massive payout batches for matured accounts or canceled accounts (M11), strictly enforcing idempotency across all write operations (M22).
+  2. `Tax Engine`: Automatically computes mandatory withholding taxes (M10) before payouts occur.
+  3. `Payout Job Orchestrator`: Manages the state machine for processing massive payout batches for matured accounts or canceled accounts (M11), strictly enforcing idempotency across all write operations (M22).
+  4. `Regulatory Reporter`: A scheduled CRON job that pulls aggregated financial data from the core ledger to generate mandatory M30 end-of-month central bank transaction reports.
 
 ### **Databases & Storage Access**:
 
 | Database / Storage | Type | Access Level | Purpose / Justification |
 |--------------------|------|--------------|-------------------------|
 | **Amazon DynamoDB** (Payment Locks) | NoSQL State Store | **Read / Write** (Owned) | **Idempotency Locks:** Conditional writes guarantee we never process the exact same payout job twice (M22). |
-| **Amazon S3** (Settlement Files) | Object Storage | **Read / Write** (Owned) | **File Archive:** Cheap, secure storage for large incoming XML (CAMT.053) files. |
+| **Amazon S3** (Settlement & Archive) | Object Storage | **Read / Write** (Owned) | **File Archive:** Cheap, secure storage for incoming XML (CAMT.053) files and outgoing Central Bank Regulatory Reports. |
 | **Amazon Aurora (PostgreSQL)** (Deposits Ledger) | Relational SQL | **Write** (via Internal API) | **Cross-Team Dependency:** Payments calculates the math but utilizes secure internal APIs to commit final entries to the core ledger owned by **Team 2 (Deposits)**. |
 | **ELK Stack** (Central Logging) | Search Index | **Write** (via Platform API) | **Cross-Team Dependency:** Regulated batch execution logs and error alerts are pushed to the central observability cluster owned by **Team 4 (Platform)**. |
 
@@ -36,7 +36,6 @@ None required for asynchronous batch processing.
 ### **Message Queue / Async Comm**:
 Heavily async.
 - Uses **S3 Event Notifications** for triggering real-time ingestion of clearing files.
-- Uses `AWS EventBridge` for CRON-triggered jobs (e.g., run interest calc every midnight).
 - Uses `AWS EventBridge` to subscribe to the `AccountMatured` domain event published by the Deposits team, triggering the automated Tax and Payout pipeline.
 - Uses `AWS SQS` for batching payout tasks and handling automated retry / Dead Letter Queues (DLQ) for temporary failed operations (S3).
 
@@ -48,7 +47,7 @@ None directly (AWS Transfer Family completely manages the SFTP hosting).
 
 ### **Other Team Interactions**:
   - **Platform Team**: Leverages their infrastructure for DLQs and relies on their secure networking (VPC/SFTP).
-  - **Deposits Team**: Calculates financial logic autonomously, but actually persists `PYI` (Pay-In), `IBR` (Interest), and `TAX` entries directly into the Deposits team's Core Ledger.
+  - **Deposits Team**: Owns the core ledger and the overnight interest calculation. Payments acts strictly as an orchestration layer for taxes and physical fiat payouts based on events emitted by Deposits.
 
 ### **Edge Cases & Failure Scenarios**:
 
@@ -71,7 +70,6 @@ Extremely detailed file processing metrics (files received, rows parsed, failed 
 ### **Roadmap & MoSCoW Prioritization References**:
 #### **Must Have (MVP)**
 - `M8`: CAMT file import from SFTP (parse, match, create PYI)
-- `M9`: Interest calculation engine (fixed + variable rates)
 - `M10`: Tax calculation engine (withholding tax)
 - `M11`: Payout processing job (PYO for matured/withdrawn, CAN for cancellations)
 - `M22`: Idempotency on all write operations

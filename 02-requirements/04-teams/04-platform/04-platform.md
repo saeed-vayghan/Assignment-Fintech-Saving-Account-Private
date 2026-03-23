@@ -21,6 +21,7 @@ No. Acts primarily as a technical backbone for the internal feature teams.
   3. `Central Observability Pipeline`: Manages the Amazon Kinesis Data Firehose streams that buffer and ship millions of structured CloudWatch logs into the ELK stack in near real-time (M19).
   4. `Data Residency Controls`: Ensures all architectural footprints strictly enforce that customer data stays within the designated AWS region (M34).
   5. `Back-office Operations BFF`: A standalone serverless API layer aggregating compliance flags, support CRM data, and audit logs for internal employees (C11).
+  6. `Notification Engine`: Centralized async listener that integrates with AWS SES/SNS to fire localized SMS and Emails (M33) in response to cross-domain Pub/Sub events.
 
 ### **Databases & Storage Access**:
 
@@ -38,7 +39,7 @@ Manages the provisioning of the central `AWS EventBridge` bus that all teams use
 - Uses **Amazon Kinesis Data Firehose** to asynchronously buffer and stream compliance and operational logs into OpenSearch without dropping payloads during massive traffic spikes. Or any other AWS based simpler solution.
 
 ### **External Systems**:
-None directly, sits behind AWS edges managing traffic patterns.
+AWS SES (Simple Email Service) and SNS (Simple Notification Service) for global transactional message delivery.
 
 ### **Third-Party Services**:
 None. Relies purely on managed AWS infrastructure services (KMS for M14 encryption at rest, AWS Secrets Manager & SSM for M26).

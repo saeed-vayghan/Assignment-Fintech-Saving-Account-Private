@@ -22,6 +22,7 @@ mindmap
       AWS Step Functions
       AWS EventBridge
       AWS SQS
+      Amazon Kinesis Firehose
     Storage & Databases
       Amazon DynamoDB
       Amazon Aurora (PostgreSQL)
@@ -73,15 +74,16 @@ This table connects every technology constraint from the project roadmap to the 
 | **AWS Lambda** | All Teams | Serverless execution for API endpoints, webhook consumers, and event-driven functions. |
 | **Amazon DynamoDB** | Onboarding, Payments, Platform | NoSQL storage for onboarding states, payment idempotency locks, and massive-scale stateful token storage (`Auth_Users` / `Auth_Tokens`). |
 | **Amazon Aurora (PostgreSQL)** | Deposits | Relational persistence for strictly ACID-compliant financial ledgers and transaction tables. |
-| **Amazon S3** | Payments | Immutable, secure storage, and lifecycle archival (Glacier) for incoming/parsed CAMT files. |
+| **Amazon S3** | Payments, Onboarding | Immutable storage for incoming CAMT settlement files, outgoing regulatory reports (Payments), and versioned Legal PDFs (Onboarding). |
 
 ### 3. Messaging & Orchestration
 
 | Technology | Owning Team(s) | Primary Services & Use Cases |
 |------------|----------------|------------------------------|
 | **AWS EventBridge** | All Teams | Central event bus for cross-domain choreography (e.g., `CustomerVerified`, `PaymentFailed`). Also used for CRON scheduling of EOM tax jobs. |
-| **AWS SQS & DLQ** | Payments, Platform | Asynchronous task queues for payout jobs and Dead Letter Queues for failed external retries. |
-| **AWS Step Functions** | Payments | State machine orchestration for complex, multi-step payout and tax calculation batches. |
+| **AWS SQS & DLQ** | Payments, Onboarding | Asynchronous task queues for payout jobs and Dead Letter Queues for incoming vendor IDV webhooks. |
+| **AWS Step Functions** | Payments, Onboarding | State machine orchestration for payout batches (Payments) and dynamic KYC/PEP underwriting evaluation (Onboarding). |
+| **Amazon Kinesis Firehose** | Platform | Resilient buffering and routing of massive application logs into OpenSearch without overwhelming the cluster. |
 
 ### 4. Infrastructure & Security
 
@@ -112,6 +114,6 @@ This table connects every technology constraint from the project roadmap to the 
 | **Onfido / Signicat** | Onboarding | Identity Verification (IDV) via webhooks (e.g., liveness checks, document validation). |
 | **ComplyAdvantage** | Onboarding | Watchlist screening (PEP, Sanctions, adverse media) integrated into the registration flow. |
 | **Plaid / Tink** | Onboarding | Account ownership validation (Open Banking) to ensure IBANs belong to the registered user. |
-| **AWS SES & SNS** | Deposits | Transactional customer communications (Emails under SES, SMS via SNS). |
+| **AWS SES & SNS** | Platform | Centralized Notification Engine for transactional customer communications (Emails under SES, SMS via SNS). |
 | **Zendesk** | Onboarding | Customer support CRM and ticketing integration. |
 | **Mixpanel / GA** | Onboarding | Product and funnel analytics to track application drop-off rates during soft launch. |

@@ -26,12 +26,14 @@ Yes. The Customer Registration Web App and its accompanying APIs are the absolut
   3. `Compliance & AML Service`: Manages PEP/Sanctions screening logic (M3) and asynchronous AML suspicious transaction monitoring (M31).
   4. `Bank Validation Service`: Interfaces with open banking APIs to verify the user owns the IBAN they provided for future payouts (M2).
   5. `Underwriting & Decision Engine`: An autonomous AWS Step Function that listens for the "All Data Collected" event, runs strict automated compliance math across all vendor inputs, and outputs the final verifiable `APPROVED` or `REJECTED` decision.
+  6. `Legal Document API`: Serves immutable, versioned PDFs (T&C, Privacy Policy) from S3 based on the user's specific region and account type (M38).
 
 ### **Databases & Storage Access**:
 
 | Database / Storage | Type | Access Level | Purpose / Justification |
 |--------------------|------|--------------|-------------------------|
 | **Amazon DynamoDB** (Onboarding State) | NoSQL Key-Value | **Read / Write** (Owned) | **Flexible Schema:** Changing JSON docs (KYC, vendor webhooks).<br>**Speed & Scale:** Handles massive registration spikes.<br>**State Machine:** Fast lookups for `DRAFT` → `VERIFIED` → `ACTIVE`. |
+| **Amazon S3** (Legal Assets) | Object Storage | **Read / Write** (Owned) | **Immutable History:** Stores explicitly versioned PDF legal agreements presented to users before signing. |
 | **ELK Stack** (Central Logging) | Search Index | **Write** (via Platform API) | **Cross-Team Dependency:** All compliance actions, PEP flags, and API events are pushed to the central observability cluster owned by **Team 4 (Platform)**. |
 
 ### **Caching Layer**:

@@ -68,3 +68,17 @@ A secondary ledger purely for regulatory reporting (M30). Tracks money the bank 
     *   `pending_remittance_date` (ISO8601 Timestamp, Nullable - Only exists until the tax is formally paid to the government, then the attribute is deleted)
 *   **GSI (Global Secondary Index):**
     *   `GSI1-PK`: `PENDING_REMITTANCE#<date>` -> **Sparse Index**. The absolute second the tax is paid via SEPA wire, the backend deletes the `pending_remittance_date` attribute. The row vanishes from the GSI instantly. This acts as an ultra-fast, perfectly distributed "To-Do List" of unpaid taxes and destroys the boolean Hot Partition.
+
+## 5. Table: `Regulatory_Report_Tasks` (DynamoDB)
+Maintains the idempotency and execution state of the monthly central bank reporting jobs (CRON).
+
+*   **Partition Key (`PK`):** `REPORT_JOB#<YYYY-MM>`
+*   **Attributes:**
+    *   `status` (String - `PROCESSING`, `UPLOADED_TO_S3`, `TRANSMITTED_TO_CB`)
+    *   `s3_archive_key` (String)
+    *   `transmission_receipt` (String)
+*   **GSI (Global Secondary Index):**
+    *   `GSI1-PK`: `STATUS#FAILED` -> Sparse Index for diagnosing failed generation tasks.
+
+## 6. Bucket: `Alborz_Regulatory_Archive` (Amazon S3)
+Stores the generated XML transaction reports required by the central bank for 10-year immutable audit retention.
