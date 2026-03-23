@@ -46,7 +46,7 @@ flowchart TD
     
     UI(Web App) -- "Reads Cache" --> RL
     
-    Cron((Midnight Cron)):::cron -- "Triggers" --> Mat(Transaction Processing Engine):::api
+    Cron((Midnight Cron)):::cron -- "Triggers" --> Mat(Transaction Processing Service):::api
     Mat -- "Calculates Yield & Matures" --> WL
 ```
 

@@ -17,7 +17,7 @@ flowchart TD
     classDef db fill:#ffe8d6,stroke:#cb997e,stroke-width:2px,color:#000
     classDef core fill:#d8b4e2,stroke:#9c27b0,stroke-width:2px,color:#000
 
-    Cron(("⏱️ Midnight CRON Job")):::trigger --> Engine["⚙️ Transaction Processing Engine"]:::logic
+    Cron(("⏱️ Midnight CRON Job")):::trigger --> Engine["⚙️ Transaction Processing Service"]:::logic
     
     Engine -- "1. Loops through Active Accounts" --> LedgerDB[("🐘 Aurora PostgreSQL:<br/>Accounts Table")]:::db
     Engine -- "2. Cross-references Mathematical Rates" --> Catalog[("🐘 Aurora PostgreSQL:<br/>Product_Catalog")]:::db

@@ -25,9 +25,9 @@ The core financial ledger. Strictly enforces ACID mathematical consistency and a
 
 | Category | Entity Name | Type / Comm. Model | Purpose |
 | :--- | :--- | :--- | :--- |
-| **Service** | Experience BFF | Sync | The dedicated frontend API for the web app to safely query cached balances and transaction history. |
+| **Service** | Customer Web BFF | Sync | The dedicated frontend API for the web app to safely query cached balances and transaction history. |
 | **Service** | Core Ledger API | Sync | The isolated core domain API that strictly processes ACID PYI/PYO financial commands. |
-| **Service** | Transaction Processing Engine | Async (Scheduled) | Automatically calculates daily account yield and matures `FIXED_TERM` deposits at midnight. |
+| **Service** | Transaction Processing Service | Async (Scheduled) | Automatically calculates daily account yield and matures `FIXED_TERM` deposits at midnight. |
 | **Service** | Projection Builder | Async (CDC Stream) | Reads PostgreSQL WAL to asynchronously populate the CQRS read model. |
 | **Database** | Aurora PostgreSQL | Relational (RDBMS) | The source of truth for all financial mathematically strict ledger events. |
 | **External Service** | None | N/A | Fully encapsulated core domain (Zero external dependencies). |

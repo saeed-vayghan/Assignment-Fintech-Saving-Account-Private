@@ -32,7 +32,7 @@ flowchart TD
     T4 -. "Issues Auth-Token" .-> T2
     T4 -. "Issues Auth-Token" .-> T3
     
-    T1 -- "Opens Account (Internal API)" --> T2
+    T1 -- "Publishes CustomerVerified Event" --> T2
     T2 -- "Publishes AccountMatured Event" --> T3
     T2 -- "Publishes PayoutRequested Event" --> T3
     T3 -- "Records Inbound Wire (Internal API)" --> T2
@@ -79,8 +79,8 @@ sequenceDiagram
     
     %% 2. Core Ledger & Funding
     Note over Cust, T3: Phase 2: Core Ledger Generation & Funding
-    T1->>T2: Opens Core Bank Account (Internal Sync API)
-    T2-->>T1: Returns Generated IBAN
+    T1-)+T2: Publishes "CustomerVerified" Event (Pub/Sub)
+    T2->>T2: Listens & Opens Core Bank Account
     
     Cust->>T3: Wires Fiat Money from External Bank to IBAN
     T3->>T2: Parses inbound CAMT XML & Posts Deposit (PYI)

@@ -6,7 +6,7 @@ The following items were identified as valid considerations for a real-world Sav
 
 | # | Requirement | Covered | MoSCoW | Team |
 |---|-------------|---------|--------|------|
-| 11.9 | RBAC for internal tools (compliance dashboard) | ✅ | M | Platform |
+| 11.9 | RBAC for internal tools (compliance dashboard) | ❌ | M | Platform |
 
 ---
 
@@ -14,8 +14,8 @@ The following items were identified as valid considerations for a real-world Sav
 
 | # | Requirement | Covered | MoSCoW | Team |
 |---|-------------|---------|--------|------|
-| 14.2 | Incident response playbooks (P1–P4, escalation, on-call) | ✅ | C | Platform |
-| 14.3 | Post-incident review process (blameless retros) | ✅ | C | Platform |
+| 14.2 | Incident response playbooks (P1–P4, escalation, on-call) | ❌ | C | Platform |
+| 14.3 | Post-incident review process (blameless retros) | ❌ | C | Platform |
 
 ---
 
@@ -23,7 +23,7 @@ The following items were identified as valid considerations for a real-world Sav
 
 | # | Requirement | Covered | MoSCoW | Team |
 |---|-------------|---------|--------|------|
-| 18.4 | Reserved Instances / Savings Plans | ✅ | C | Platform |
+| 18.4 | Reserved Instances / Savings Plans | ❌ | C | Platform |
 
 ---
 
@@ -31,7 +31,7 @@ The following items were identified as valid considerations for a real-world Sav
 
 | # | Requirement | Covered | MoSCoW | Team |
 |---|-------------|---------|--------|------|
-| 19.5 | Graviton (ARM-based) instances | ✅ | C | Platform |
+| 19.5 | Graviton (ARM-based) instances | ❌ | C | Platform |
 
 ---
 
@@ -39,10 +39,10 @@ The following items were identified as valid considerations for a real-world Sav
 
 | # | Requirement | Covered | MoSCoW | Team |
 |---|-------------|---------|--------|------|
-| 20.1 | Identify existing systems to modify | ✅ | M | Architect |
-| 20.2 | Define new services to build from scratch | ✅ | M | Architect |
-| 20.4 | Integration points with existing internal services | ✅ | M | Architect |
-| 20.5 | Phased rollout plan (MVP vs full launch) | ✅ | M | Architect |
+| 20.1 | Identify existing systems to modify | ❌ | M | Architect |
+| 20.2 | Define new services to build from scratch | ❌ | M | Architect |
+| 20.4 | Integration points with existing internal services | ❌ | M | Architect |
+| 20.5 | Phased rollout plan (MVP vs full launch) | ❌ | M | Architect |
 
 ---
 
@@ -50,7 +50,7 @@ The following items were identified as valid considerations for a real-world Sav
 
 | # | Requirement | Covered | MoSCoW | Team |
 |---|-------------|---------|--------|------|
-| 21.10 | Stakeholder: existing system constraints, preferences, timeline | ✅ | C | Architect |
+| 21.10 | Stakeholder: existing system constraints, preferences, timeline | ❌ | C | Architect |
 
 ---
 
