@@ -5,42 +5,21 @@
     "items": [
       {
         "id": "9d15389e",
-        "title": "01-Intro-V1",
+        "title": "Intro V1",
         "path": "./01-intro/01-intro-v1.md",
         "desc": "This is the assignment description given by the Bank.",
         "hasDiagram": false
       },
       {
         "id": "8367850e",
-        "title": "01-Basic-Questions",
+        "title": "Basic Questions",
         "path": "./02-requirements/01-basic-questions.md",
         "desc": "Structured system design and architecture Q&A.",
         "hasDiagram": false
       },
       {
-        "id": "d025717e",
-        "title": "Product Roadmap",
-        "path": "./02-requirements/03-roadmap.md",
-        "desc": "12-month delivery timeline.",
-        "hasDiagram": false
-      },
-      {
-        "id": "9da7593a",
-        "title": "Tech Radar & Architecture Map",
-        "path": "./02-requirements/10-tech-radar.md",
-        "desc": "Tech stacks and 3rd party integration map.",
-        "hasDiagram": true
-      },
-      {
-        "id": "3e888462",
-        "title": "03-Glossary",
-        "path": "./01-intro/03-glossary.md",
-        "desc": "Technical and banking definitions.",
-        "hasDiagram": false
-      },
-      {
         "id": "daf7cec3",
-        "title": "02-Intro-V2",
+        "title": "Intro V2",
         "path": "./01-intro/02-intro-v2.md",
         "desc": "Updated version of the assignment, including more specific details.",
         "hasDiagram": false
@@ -53,10 +32,31 @@
         "hasDiagram": false
       },
       {
+        "id": "d025717e",
+        "title": "Product Roadmap",
+        "path": "./02-requirements/03-roadmap.md",
+        "desc": "12-month delivery timeline.",
+        "hasDiagram": false
+      },
+      {
         "id": "40d682b3",
         "title": "Team Structure",
         "path": "./02-requirements/04-teams.md",
         "desc": "Project headcount and domain boundaries.",
+        "hasDiagram": false
+      },
+      {
+        "id": "9da7593a",
+        "title": "Tech Radar & Architecture Map",
+        "path": "./02-requirements/10-tech-radar.md",
+        "desc": "Tech stacks and 3rd party integration map.",
+        "hasDiagram": true
+      },
+      {
+        "id": "3e888462",
+        "title": "Glossary",
+        "path": "./01-intro/03-glossary.md",
+        "desc": "Technical and banking definitions.",
         "hasDiagram": false
       }
     ]
@@ -65,27 +65,6 @@
     "phase": "2. System Architecture & Strategy",
     "description": "High-level diagrams, database selection strategies, and messaging patterns.",
     "items": [
-      {
-        "id": "2c7d2bf9",
-        "title": "System Universe Architecture",
-        "path": "./03-system-design/03-system-design-universe.md",
-        "desc": "Cross-team communication and interaction map.",
-        "hasDiagram": true
-      },
-      {
-        "id": "9afea363",
-        "title": "Teams Architecture Diagram",
-        "path": "./03-system-design/02-system-design-teams.md",
-        "desc": "Layered view of all 4 engineering domains.",
-        "hasDiagram": true
-      },
-      {
-        "id": "0ab45d12",
-        "title": "Core Engineering Entities",
-        "path": "./03-system-design/01-teams.md",
-        "desc": "Master list of microservices and DBs per team.",
-        "hasDiagram": false
-      },
       {
         "id": "8a403d54",
         "title": "Database Selection Guide",
@@ -101,10 +80,10 @@
         "hasDiagram": true
       },
       {
-        "id": "945a65d5",
-        "title": "BFF (Backend for Frontend) Strategy",
-        "path": "./02-requirements/08-bff.md",
-        "desc": "Decoupling frontends from microservices.",
+        "id": "44b33834",
+        "title": "Auth Service Strategy",
+        "path": "./02-requirements/06-auth-service.md",
+        "desc": "Cross-boundary B2C security mapping.",
         "hasDiagram": true
       },
       {
@@ -112,6 +91,27 @@
         "title": "Asynchronous & Messaging",
         "path": "./02-requirements/07-async-messaging.md",
         "desc": "Event-driven architecture and worker standards.",
+        "hasDiagram": true
+      },
+      {
+        "id": "945a65d5",
+        "title": "BFF (Backend for Frontend) Strategy",
+        "path": "./02-requirements/08-bff.md",
+        "desc": "Decoupling frontends from microservices.",
+        "hasDiagram": true
+      },
+      {
+        "id": "2c7d2bf9",
+        "title": "System Universe Architecture",
+        "path": "./03-system-design/03-system-design-universe.md",
+        "desc": "Cross-team communication and interaction map.",
+        "hasDiagram": true
+      },
+      {
+        "id": "9afea363",
+        "title": "Teams Architecture Diagram",
+        "path": "./03-system-design/02-system-design-teams.md",
+        "desc": "Layered view of all 4 engineering domains.",
         "hasDiagram": true
       },
       {
@@ -128,8 +128,15 @@
     "description": "Onboarding (Team 1) and Deposits (Team 2) service specifications.",
     "items": [
       {
+        "id": "0ab45d12",
+        "title": "Core Engineering Entities",
+        "path": "./03-system-design/01-teams.md",
+        "desc": "Master list of microservices and DBs per team.",
+        "hasDiagram": false
+      },
+      {
         "id": "faa92e4a",
-        "title": "Team 1: Onboarding Domain",
+        "title": "Team 1: Onboarding",
         "path": "./02-requirements/04-teams/01-onboarding/01-onboarding.md",
         "desc": "Registration and KYC boundaries.",
         "hasDiagram": false
@@ -150,21 +157,21 @@
       },
       {
         "id": "650e7c21",
-        "title": "Registration & Eligibility API",
+        "title": "Onboarding / Service: Registration & Eligibility API",
         "path": "./02-requirements/04-teams/01-onboarding/services/01-registration-eligibility-api.md",
         "desc": "Public-facing onboarding gateway.",
         "hasDiagram": true
       },
       {
         "id": "74aed266",
-        "title": "Underwriting & Decision Engine",
+        "title": "Onboarding / Service: Underwriting & Decision Engine",
         "path": "./02-requirements/04-teams/01-onboarding/services/02-underwriting-decision-engine.md",
         "desc": "Automated compliance brain.",
         "hasDiagram": true
       },
       {
         "id": "5a4b9ba7",
-        "title": "Team 2: Deposits Domain",
+        "title": "Team 2: Deposits",
         "path": "./02-requirements/04-teams/02-deposits/02-deposits.md",
         "desc": "Ledger and savings lifecycle.",
         "hasDiagram": false
@@ -185,14 +192,14 @@
       },
       {
         "id": "19e0251c",
-        "title": "Core Ledger Service",
+        "title": "Deposits / Service: Core Ledger Service",
         "path": "./02-requirements/04-teams/02-deposits/services/01-core-ledger-service.md",
         "desc": "Source of truth for financial movement.",
         "hasDiagram": true
       },
       {
         "id": "3751983b",
-        "title": "Transaction Processing Service",
+        "title": "Deposits / Service: Transaction Processing Service",
         "path": "./02-requirements/04-teams/02-deposits/services/02-transaction-processing-service.md",
         "desc": "Interest calculation and maturity logic.",
         "hasDiagram": true
@@ -205,7 +212,7 @@
     "items": [
       {
         "id": "c08dca25",
-        "title": "Team 3: Payments Domain",
+        "title": "Team 3: Payments",
         "path": "./02-requirements/04-teams/03-payments/03-payments.md",
         "desc": "Heavy algorithmic accounting.",
         "hasDiagram": false
@@ -226,14 +233,14 @@
       },
       {
         "id": "0e602b85",
-        "title": "CAMT Ingestion Pipeline",
+        "title": "Payments / Service: CAMT Ingestion Pipeline",
         "path": "./02-requirements/04-teams/03-payments/services/01-camt-ingestion-pipeline.md",
         "desc": "Inbound fiat serverless workflow.",
         "hasDiagram": true
       },
       {
         "id": "b9149e5b",
-        "title": "Team 4: Platform Domain",
+        "title": "Team 4: Platform",
         "path": "./02-requirements/04-teams/04-platform/04-platform.md",
         "desc": "Foundational cloud services.",
         "hasDiagram": false
@@ -253,29 +260,22 @@
         "hasDiagram": false
       },
       {
-        "id": "44b33834",
-        "title": "Auth Service Strategy",
-        "path": "./02-requirements/06-auth-service.md",
-        "desc": "Cross-boundary B2C security mapping.",
-        "hasDiagram": true
-      },
-      {
         "id": "377f63d8",
-        "title": "Auth-Service Details",
+        "title": "Platform / Service: Auth-Service Details",
         "path": "./02-requirements/04-teams/04-platform/services/01-auth-service.md",
         "desc": "Central identity management.",
         "hasDiagram": true
       },
       {
         "id": "722693c5",
-        "title": "Observability Pipeline",
+        "title": "Platform / Service: Observability Pipeline",
         "path": "./02-requirements/04-teams/04-platform/services/02-central-observability-pipeline.md",
         "desc": "Decoupled audit and metric aggregator.",
         "hasDiagram": true
       },
       {
         "id": "e4fe4f26",
-        "title": "Notification Engine",
+        "title": "Platform / Service: Notification Engine",
         "path": "./02-requirements/04-teams/04-platform/services/03-notification-engine.md",
         "desc": "Omni-channel customer communications.",
         "hasDiagram": true
@@ -399,7 +399,7 @@
       },
       {
         "id": "d3b9431d",
-        "title": "Incident Scenario Analysis",
+        "title": "Logging & Monitoring - Incident Scenario Analysis",
         "path": "./06-development/04-monitoring-logging.md",
         "desc": "Phantom Double-Tax distributed tracing case study.",
         "hasDiagram": false
@@ -417,10 +417,16 @@
         "path": "./07-templates/02-kyc-questionnaire.md",
         "desc": "Compliance form design standard.",
         "hasDiagram": false
-      },
+      }
+    ]
+  },
+  {
+    "phase": "7. Beyond Assignment",
+    "description": "Real-world roadmap additions and engineering best practices.",
+    "items": [
       {
         "id": "dd7c3c83",
-        "title": "Multi-Team Best Practices",
+        "title": "Best Practices",
         "path": "./09-beyound-assignment/02-best-practices.md",
         "desc": "General engineering and operational standards.",
         "hasDiagram": false
