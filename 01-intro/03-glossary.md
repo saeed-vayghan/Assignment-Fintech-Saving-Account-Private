@@ -71,6 +71,5 @@ This glossary defines key banking, compliance, and technical terms used througho
 | **Onfido / Signicat** | IDV / KYC | Third-party services for identity proving and passport validation. |
 | **Plaid / Tink** | Open Banking | Account ownership validation and real-time bank connectivity. |
 | **ComplyAdvantage** | AML Screening | Global database for PEP, Sanctions, and adverse media screening. |
-| **Zendesk** | CRM | Customer support platform for managing tickets and inquiries. |
 | **K6 / Artillery** | Load Testing | Tools for validating system performance and throughput. |
 | **Jest / Cypress** | Testing | Frameworks for unit and end-to-end (E2E) automated testing. |

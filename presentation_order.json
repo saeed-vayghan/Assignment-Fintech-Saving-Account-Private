@@ -1,0 +1,437 @@
+[
+  {
+    "phase": "1. Foundation & Requirements",
+    "description": "Project context, business requirements, and the Alborz Bank tech radar.",
+    "items": [
+      {
+        "id": "9d15389e",
+        "title": "01-Intro-V1",
+        "path": "./01-intro/01-intro-v1.md",
+        "desc": "This is the assignment description given by the Bank.",
+        "hasDiagram": false
+      },
+      {
+        "id": "8367850e",
+        "title": "01-Basic-Questions",
+        "path": "./02-requirements/01-basic-questions.md",
+        "desc": "Structured system design and architecture Q&A.",
+        "hasDiagram": false
+      },
+      {
+        "id": "d025717e",
+        "title": "Product Roadmap",
+        "path": "./02-requirements/03-roadmap.md",
+        "desc": "12-month delivery timeline.",
+        "hasDiagram": false
+      },
+      {
+        "id": "9da7593a",
+        "title": "Tech Radar & Architecture Map",
+        "path": "./02-requirements/10-tech-radar.md",
+        "desc": "Tech stacks and 3rd party integration map.",
+        "hasDiagram": true
+      },
+      {
+        "id": "3e888462",
+        "title": "03-Glossary",
+        "path": "./01-intro/03-glossary.md",
+        "desc": "Technical and banking definitions.",
+        "hasDiagram": false
+      },
+      {
+        "id": "daf7cec3",
+        "title": "02-Intro-V2",
+        "path": "./01-intro/02-intro-v2.md",
+        "desc": "Updated version of the assignment, including more specific details.",
+        "hasDiagram": false
+      },
+      {
+        "id": "d1639660",
+        "title": "Requirements Checklist",
+        "path": "./02-requirements/02-requirements-checklist.md",
+        "desc": "MoSCoW status and team ownership mapping.",
+        "hasDiagram": false
+      },
+      {
+        "id": "40d682b3",
+        "title": "Team Structure",
+        "path": "./02-requirements/04-teams.md",
+        "desc": "Project headcount and domain boundaries.",
+        "hasDiagram": false
+      }
+    ]
+  },
+  {
+    "phase": "2. System Architecture & Strategy",
+    "description": "High-level diagrams, database selection strategies, and messaging patterns.",
+    "items": [
+      {
+        "id": "2c7d2bf9",
+        "title": "System Universe Architecture",
+        "path": "./03-system-design/03-system-design-universe.md",
+        "desc": "Cross-team communication and interaction map.",
+        "hasDiagram": true
+      },
+      {
+        "id": "9afea363",
+        "title": "Teams Architecture Diagram",
+        "path": "./03-system-design/02-system-design-teams.md",
+        "desc": "Layered view of all 4 engineering domains.",
+        "hasDiagram": true
+      },
+      {
+        "id": "0ab45d12",
+        "title": "Core Engineering Entities",
+        "path": "./03-system-design/01-teams.md",
+        "desc": "Master list of microservices and DBs per team.",
+        "hasDiagram": false
+      },
+      {
+        "id": "8a403d54",
+        "title": "Database Selection Guide",
+        "path": "./02-requirements/05-db-selection.md",
+        "desc": "Rationale for SQL vs NoSQL selections.",
+        "hasDiagram": false
+      },
+      {
+        "id": "12ac601d",
+        "title": "Database Models & Flows",
+        "path": "./02-requirements/09-db-model.md",
+        "desc": "Detailed schemas for team-bound contexts.",
+        "hasDiagram": true
+      },
+      {
+        "id": "945a65d5",
+        "title": "BFF (Backend for Frontend) Strategy",
+        "path": "./02-requirements/08-bff.md",
+        "desc": "Decoupling frontends from microservices.",
+        "hasDiagram": true
+      },
+      {
+        "id": "66f64bad",
+        "title": "Asynchronous & Messaging",
+        "path": "./02-requirements/07-async-messaging.md",
+        "desc": "Event-driven architecture and worker standards.",
+        "hasDiagram": true
+      },
+      {
+        "id": "72743c96",
+        "title": "Assignment Flow Diagrams",
+        "path": "./03-system-design/04-assignment-requested-diagrams.md",
+        "desc": "Sequence diagrams for Onboarding and Transactions.",
+        "hasDiagram": true
+      }
+    ]
+  },
+  {
+    "phase": "3. Domain Deep Dives (I)",
+    "description": "Onboarding (Team 1) and Deposits (Team 2) service specifications.",
+    "items": [
+      {
+        "id": "faa92e4a",
+        "title": "Team 1: Onboarding Domain",
+        "path": "./02-requirements/04-teams/01-onboarding/01-onboarding.md",
+        "desc": "Registration and KYC boundaries.",
+        "hasDiagram": false
+      },
+      {
+        "id": "36745e99",
+        "title": "Onboarding Nuances",
+        "path": "./02-requirements/04-teams/01-onboarding/01-onboarding-explanation.md",
+        "desc": "Architectural isolates in compliance flows.",
+        "hasDiagram": false
+      },
+      {
+        "id": "1290eed5",
+        "title": "Onboarding Data Models",
+        "path": "./02-requirements/04-teams/01-onboarding/01-onboarding-data-models.md",
+        "desc": "Registration wizard state machines.",
+        "hasDiagram": false
+      },
+      {
+        "id": "650e7c21",
+        "title": "Registration & Eligibility API",
+        "path": "./02-requirements/04-teams/01-onboarding/services/01-registration-eligibility-api.md",
+        "desc": "Public-facing onboarding gateway.",
+        "hasDiagram": true
+      },
+      {
+        "id": "74aed266",
+        "title": "Underwriting & Decision Engine",
+        "path": "./02-requirements/04-teams/01-onboarding/services/02-underwriting-decision-engine.md",
+        "desc": "Automated compliance brain.",
+        "hasDiagram": true
+      },
+      {
+        "id": "5a4b9ba7",
+        "title": "Team 2: Deposits Domain",
+        "path": "./02-requirements/04-teams/02-deposits/02-deposits.md",
+        "desc": "Ledger and savings lifecycle.",
+        "hasDiagram": false
+      },
+      {
+        "id": "1083488f",
+        "title": "Deposits Nuances",
+        "path": "./02-requirements/04-teams/02-deposits/02-deposits-explanation.md",
+        "desc": "Interest maturity and ledger isolation.",
+        "hasDiagram": false
+      },
+      {
+        "id": "6a3a0cfe",
+        "title": "Deposits Data Models",
+        "path": "./02-requirements/04-teams/02-deposits/02-deposits-data-models.md",
+        "desc": "Account and transaction schemas.",
+        "hasDiagram": false
+      },
+      {
+        "id": "19e0251c",
+        "title": "Core Ledger Service",
+        "path": "./02-requirements/04-teams/02-deposits/services/01-core-ledger-service.md",
+        "desc": "Source of truth for financial movement.",
+        "hasDiagram": true
+      },
+      {
+        "id": "3751983b",
+        "title": "Transaction Processing Service",
+        "path": "./02-requirements/04-teams/02-deposits/services/02-transaction-processing-service.md",
+        "desc": "Interest calculation and maturity logic.",
+        "hasDiagram": true
+      }
+    ]
+  },
+  {
+    "phase": "4. Domain Deep Dives (II)",
+    "description": "Payments (Team 3) and Platform (Team 4) service specifications.",
+    "items": [
+      {
+        "id": "c08dca25",
+        "title": "Team 3: Payments Domain",
+        "path": "./02-requirements/04-teams/03-payments/03-payments.md",
+        "desc": "Heavy algorithmic accounting.",
+        "hasDiagram": false
+      },
+      {
+        "id": "a8066533",
+        "title": "Payments Nuances",
+        "path": "./02-requirements/04-teams/03-payments/03-payments-explanation.md",
+        "desc": "Clearing instructions and batch limits.",
+        "hasDiagram": false
+      },
+      {
+        "id": "038377f2",
+        "title": "Payments Data Models",
+        "path": "./02-requirements/04-teams/03-payments/03-payments-data-models.md",
+        "desc": "Outbound clearing and fiat state schema.",
+        "hasDiagram": false
+      },
+      {
+        "id": "0e602b85",
+        "title": "CAMT Ingestion Pipeline",
+        "path": "./02-requirements/04-teams/03-payments/services/01-camt-ingestion-pipeline.md",
+        "desc": "Inbound fiat serverless workflow.",
+        "hasDiagram": true
+      },
+      {
+        "id": "b9149e5b",
+        "title": "Team 4: Platform Domain",
+        "path": "./02-requirements/04-teams/04-platform/04-platform.md",
+        "desc": "Foundational cloud services.",
+        "hasDiagram": false
+      },
+      {
+        "id": "e5220f19",
+        "title": "Platform Nuances",
+        "path": "./02-requirements/04-teams/04-platform/04-platform-explanation.md",
+        "desc": "Infrastructure as code and shared primitives.",
+        "hasDiagram": false
+      },
+      {
+        "id": "99dfb188",
+        "title": "Platform Data Models",
+        "path": "./02-requirements/04-teams/04-platform/04-platform-data-models.md",
+        "desc": "Identity mapping and master audit logs.",
+        "hasDiagram": false
+      },
+      {
+        "id": "44b33834",
+        "title": "Auth Service Strategy",
+        "path": "./02-requirements/06-auth-service.md",
+        "desc": "Cross-boundary B2C security mapping.",
+        "hasDiagram": true
+      },
+      {
+        "id": "377f63d8",
+        "title": "Auth-Service Details",
+        "path": "./02-requirements/04-teams/04-platform/services/01-auth-service.md",
+        "desc": "Central identity management.",
+        "hasDiagram": true
+      },
+      {
+        "id": "722693c5",
+        "title": "Observability Pipeline",
+        "path": "./02-requirements/04-teams/04-platform/services/02-central-observability-pipeline.md",
+        "desc": "Decoupled audit and metric aggregator.",
+        "hasDiagram": true
+      },
+      {
+        "id": "e4fe4f26",
+        "title": "Notification Engine",
+        "path": "./02-requirements/04-teams/04-platform/services/03-notification-engine.md",
+        "desc": "Omni-channel customer communications.",
+        "hasDiagram": true
+      }
+    ]
+  },
+  {
+    "phase": "5. Security & Cloud Excellence",
+    "description": "Threat modeling, Red/Blue teaming, and AWS DevOps strategy.",
+    "items": [
+      {
+        "id": "8d8297e2",
+        "title": "Threat Models",
+        "path": "./05-security/01-threat-models.md",
+        "desc": "STRIDE analysis and mitigation plans.",
+        "hasDiagram": false
+      },
+      {
+        "id": "41fe8a6d",
+        "title": "OWASP Security Mapping",
+        "path": "./05-security/02-owasp-top-10.md",
+        "desc": "Service-level protection against Top 10 risks.",
+        "hasDiagram": false
+      },
+      {
+        "id": "8d8a26b3",
+        "title": "Red & Blue Teams",
+        "path": "./05-security/03-red-blue-team.md",
+        "desc": "Offensive and defensive security coordination.",
+        "hasDiagram": true
+      },
+      {
+        "id": "7f28be69",
+        "title": "AWS Placement Strategy",
+        "path": "./04-devops/01-aws-services.md",
+        "desc": "Where and why services are chosen.",
+        "hasDiagram": false
+      },
+      {
+        "id": "6e16e6af",
+        "title": "Infrastructure Architecture",
+        "path": "./04-devops/02-infrastructure-diagrams.md",
+        "desc": "VPC, Private Subnets, and EventBridge flow.",
+        "hasDiagram": true
+      },
+      {
+        "id": "b093ad1b",
+        "title": "AWS Reliability Rules",
+        "path": "./03-system-design/05-reliability.md",
+        "desc": "3 Core ideas for high-availability.",
+        "hasDiagram": true
+      },
+      {
+        "id": "f9a81ab6",
+        "title": "Cloud Performance Efficiency",
+        "path": "./04-devops/05-performance efficiency.md",
+        "desc": "Serverless vs Monolith cost analysis.",
+        "hasDiagram": false
+      },
+      {
+        "id": "5c913e16",
+        "title": "CloudFormation Best Practices",
+        "path": "./04-devops/04-cloud-formation.md",
+        "desc": "IaC standards for engineering teams.",
+        "hasDiagram": false
+      },
+      {
+        "id": "ec259cbb",
+        "title": "FinOps Card (Tagging)",
+        "path": "./04-devops/03-tagging-and-cost-optimization.md",
+        "desc": "Automating cost governance.",
+        "hasDiagram": true
+      }
+    ]
+  },
+  {
+    "phase": "6. Engineering Standards & Readiness",
+    "description": "API guidelines, CI/CD pipelines, and incident response playbooks.",
+    "items": [
+      {
+        "id": "2bcb31f7",
+        "title": "REST API Guidelines",
+        "path": "./06-development/01-api-rules.md",
+        "desc": "Global microservice communication standards.",
+        "hasDiagram": false
+      },
+      {
+        "id": "7c18abe3",
+        "title": "Sample: Onboarding API",
+        "path": "./06-development/03-sample-apis/team1-registration-api.md",
+        "desc": "Swagger/OpenAPI spec for Team 1.",
+        "hasDiagram": false
+      },
+      {
+        "id": "1669347a",
+        "title": "Sample: Ledger API",
+        "path": "./06-development/03-sample-apis/team2-core-ledger-api.md",
+        "desc": "Swagger/OpenAPI spec for Team 2.",
+        "hasDiagram": false
+      },
+      {
+        "id": "7f15b2ba",
+        "title": "Sample: Payout API",
+        "path": "./06-development/03-sample-apis/team3-payout-api.md",
+        "desc": "Swagger/OpenAPI spec for Team 3.",
+        "hasDiagram": false
+      },
+      {
+        "id": "af3acb33",
+        "title": "GraphQL BFF Strategy",
+        "path": "./06-development/02-api-data-provider.md",
+        "desc": "Unified data provider exploration.",
+        "hasDiagram": true
+      },
+      {
+        "id": "3fa9b548",
+        "title": "CI/CD & Deployment",
+        "path": "./06-development/05-deployments.md",
+        "desc": "Canary strategy and 3-stage validation.",
+        "hasDiagram": true
+      },
+      {
+        "id": "d3b9431d",
+        "title": "Incident Scenario Analysis",
+        "path": "./06-development/04-monitoring-logging.md",
+        "desc": "Phantom Double-Tax distributed tracing case study.",
+        "hasDiagram": false
+      },
+      {
+        "id": "9a04b048",
+        "title": "Architecture Decisions (ADR)",
+        "path": "./07-templates/01-architecture-decision-record.md",
+        "desc": "ADR Template for official decisions.",
+        "hasDiagram": false
+      },
+      {
+        "id": "9186bab7",
+        "title": "KYC Questionnaire Template",
+        "path": "./07-templates/02-kyc-questionnaire.md",
+        "desc": "Compliance form design standard.",
+        "hasDiagram": false
+      },
+      {
+        "id": "dd7c3c83",
+        "title": "Multi-Team Best Practices",
+        "path": "./09-beyound-assignment/02-best-practices.md",
+        "desc": "General engineering and operational standards.",
+        "hasDiagram": false
+      },
+      {
+        "id": "f6fc4b7d",
+        "title": "Beyond Assignment Checklist",
+        "path": "./09-beyound-assignment/01-features-checklist.md",
+        "desc": "Real-world roadmap additions.",
+        "hasDiagram": false
+      }
+    ]
+  }
+]

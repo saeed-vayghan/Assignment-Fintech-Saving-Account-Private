@@ -1,7 +1,9 @@
 # Alborz Bank — Savings Account Product Roadmap
 
 **Timeline:** 12 months to go live
+
 **Tech Stack:** Node.js / TypeScript, AWS (serverless-first), CDK / CloudFormation
+
 **Methodology:** Agile (2-week sprints), cross-functional teams
 
 ---
@@ -173,7 +175,7 @@ Team definitions, roles, skills, and scope are documented in teams.md.
 | **Platform** | Operational readiness review | Runbooks, tuning | Post-launch support | AWS Trusted Advisor, Systems Manager, Alarms |
 | **Payments** | Partner UAT coordination | Validate Prod CAMT | First EOM batch support | AWS SFTP, XML Parsers, Step Functions |
 | **Deposits** | Account closure flow | Live transaction triage | Post-launch support | CloudWatch Dashboards, Admin UI |
-| **Onboarding**| Train support agents | Monitor soft-launch funnel | Scale IDV vendor tier | CRM/Zendesk, Google Analytics/Mixpanel |
+| **Onboarding**| Train support agents | Monitor soft-launch funnel | Scale IDV vendor tier | CRM, Google Analytics/Mixpanel |
 
 > 🏛️ **Architect Focus:** Overseeing operational readiness. Reviewing UAT feedback for necessary architectural tweaks, providing the final technical Go/No-Go sign-off, and leading the post-launch retrospective & V2 planning.
 

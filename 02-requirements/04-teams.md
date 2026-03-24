@@ -17,7 +17,7 @@ Owns the customer-facing onboarding flow and all compliance integrations. All en
 **Tech Stack:**
 - **Languages:** Node.js, TypeScript, React
 - **Compute & Data:** AWS Lambda, Amazon DynamoDB
-- **Integrations:** Onfido/IDnow (IDV), Plaid/Tink (Bank Validation), ComplyAdvantage (PEP/Sanctions), Zendesk (CRM)
+- **Integrations:** Onfido/IDnow (IDV), Plaid/Tink (Bank Validation), ComplyAdvantage (PEP/Sanctions), CRM
 - **Testing:** Jest, Cypress
 
 **Scope:**

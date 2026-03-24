@@ -2,7 +2,6 @@
 
 This checklist maps every requirement to its delivery status, priority, team ownership, phase, and MoSCoW category. See teams.md for team definitions and roadmap.md for phased delivery plan.
 
-**Legend:**
 - **Status:** `Not Started` | `In Progress` | `Done`
 - **Covered:** ✅ = tracked in roadmap | ⚠️ = partially covered | ❌ = was missing (now added)
 - **MoSCoW:** M = Must Have | S = Should Have | C = Could Have | W = Won't Have

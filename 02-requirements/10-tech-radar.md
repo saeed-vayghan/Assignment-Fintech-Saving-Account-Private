@@ -48,7 +48,6 @@ mindmap
       Plaid / Tink (Bank)
       ComplyAdvantage (AML)
       AWS SES & SNS
-      Zendesk (CRM)
 ```
 
 ---
@@ -115,5 +114,4 @@ This table connects every technology constraint from the project roadmap to the 
 | **ComplyAdvantage** | Onboarding | Watchlist screening (PEP, Sanctions, adverse media) integrated into the registration flow. |
 | **Plaid / Tink** | Onboarding | Account ownership validation (Open Banking) to ensure IBANs belong to the registered user. |
 | **AWS SES & SNS** | Platform | Centralized Notification Engine for transactional customer communications (Emails under SES, SMS via SNS). |
-| **Zendesk** | Onboarding | Customer support CRM and ticketing integration. |
 | **Mixpanel / GA** | Onboarding | Product and funnel analytics to track application drop-off rates during soft launch. |

@@ -2,7 +2,7 @@
 
 This document catalogs and standardizes all asynchronous workflows, background jobs, publish/subscribe (PubSub) events, and message queues across all engineering teams.
 
-## 1. Legend: Async Mechanisms
+## 1. Async Mechanisms
 
 To ensure architectural consistency, we map all asynchronous interactions to a standardized set of AWS serverless primitives:
 
