@@ -24,6 +24,10 @@ Due to browser security policies regarding local file fetching (CORS), this proj
 ### 2. Execution
 Open your terminal in the project root and run:
 ```bash
+git clone https://github.com/saeed-vayghan/Assignment-Fintech-Saving-Account-Private.git
+
+cd Assignment-Fintech-Saving-Account-Private
+
 python3 -m http.server 2026
 ```
 
