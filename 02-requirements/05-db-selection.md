@@ -63,3 +63,23 @@
   * **Full-Text Search:** Compliance officers and developers need to quickly search millions of logs for a specific `correlationId` or `customerId`. 
   * **Indexing:** It automatically indexes every field in our structured logs, making dashboards and troubleshooting extremely fast.
 * **Secondary Option:** CloudWatch Logs + Custom Node.js search scripts. Cheaper, but searching across massive logs textually using scripts is very slow and hard to visualize.
+
+---
+<br>
+
+# A note on Distributed Consistency Models
+
+Selecting the correct consistency model is the difference between a high-performance system and a system with "phantom" balances or double-spending exploits.
+
+* **Strong Consistency:** Guarantees that every node in the cluster sees the absolute latest write immediately, preventing any stale or intermediate reads.
+* **Sequential Consistency:** Ensures all processes see all operations in the same specific order, as if they were executed on a single processor.
+* **Eventual Consistency:** Guarantees that if no new updates are made, all reads across all nodes will eventually return the same final value.
+* **Causal Consistency:** Ensures that operations related by cause and effect are observed in the same specific order by all nodes across the system.
+
+### Why and Where it matters for Alborz Bank
+
+In this distributed architecture, selecting the wrong model can lead to catastrophic financial discrepancies or security breaches:
+
+* **Strong Consistency is Mandatory:** The **Deposits & Ledger Service (Team 2)** must use Strong Consistency. If a customer spends £100, the system *must* coordinate across all nodes to ensure those funds are immediately and globally subtracted before another transaction attempt.
+* **Eventual Consistency is Acceptable:** The **Notification Engine** and **Audit Analytics** can tolerate "stale" data for a few milliseconds, prioritizing high availability over instantaneous global synchronization.
+
